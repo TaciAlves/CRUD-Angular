@@ -6,8 +6,14 @@
         <mat-card-content>
             <mat-form-field class="form-field">
                 <mat-label>Tarefa:</mat-label>
-                <input matInput type="text" placeholder="Digite a sua tarefa">
+                <input matInput #todo type="text" placeholder="Digite a sua tarefa" (keyup.enter)="addTodo(todo.value); todo.value = ''">
             </mat-form-field>
+            <mat-list role="list">
+                <div *ngFor="let todo of todos">
+                    <p>todo.title</p>
+                    <app-todo-item [todo]="todo" (remove)="removeTodo($event)"></app-todo-item>
+                </div>
+            </mat-list>
         </mat-card-content>
     </mat-card>
 </section>
